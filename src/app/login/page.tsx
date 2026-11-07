@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault(); setBusy(true); setError('');
     const { error } = await supabase().auth.signInWithPassword({ email, password });
     setBusy(false);
-    if (error) return setError('Sign-in failed. Check your email and password.'); // same message for every cause
+    if (error) return setError(error.message); // show real error for debugging
     router.replace('/');
   }
   return (
